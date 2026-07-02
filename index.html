@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Fashion Lab — สร้างภาพแฟชั่นสวยเหมือนถ่ายจริงด้วย AI</title>
+    <meta name="description" content="เปลี่ยนจินตนาการและการโปรโมตแบรนด์แฟชั่นด้วยพลัง AI โดยไม่ต้องจ้างช่างภาพ ไม่ต้องเช่าสตูดิโอ และไม่ต้องออกกล้องเอง">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans+Thai:wght@200;300;400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span class="logo-text">PROMPT FASHION LAB</span>
+            </a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#pain-point" class="nav-link"><span>01</span> ปัญหา</a></li>
+                    <li><a href="#solution" class="nav-link"><span>02</span> ทางออก</a></li>
+                    <li><a href="#who-is-this-for" class="nav-link"><span>03</span> เหมาะกับใคร</a></li>
+                    <li><a href="#products" class="nav-link"><span>04</span> แพ็กเกจ</a></li>
+                    <li><a href="#gallery" class="nav-link"><span>05</span> ตัวอย่างภาพ</a></li>
+                    <li><a href="#faq" class="nav-link"><span>06</span> คำถามพบบ่อย</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#products" class="btn btn-nav"><span>เริ่มต้น ฿49</span></a>
+                <button class="mobile-menu-toggle" aria-label="เปิดเมนู">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#pain-point" class="mobile-link"><span>01</span> ปัญหา (Pain Point)</a></li>
+                <li><a href="#solution" class="mobile-link"><span>02</span> ทางออก (Solution)</a></li>
+                <li><a href="#who-is-this-for" class="mobile-link"><span>03</span> เหมาะกับใคร (Who is this for)</a></li>
+                <li><a href="#products" class="mobile-link"><span>04</span> แพ็กเกจ (Pricing)</a></li>
+                <li><a href="#gallery" class="mobile-link"><span>05</span> ตัวอย่างภาพ (Gallery)</a></li>
+                <li><a href="#faq" class="mobile-link"><span>06</span> คำถามพบบ่อย (FAQ)</a></li>
+            </ul>
+            <a href="#products" class="btn btn-mobile-cta">เริ่มต้นเพียง 49 บาท</a>
+        </nav>
+    </div>
+
+    <main>
+        
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="section-lines">
+                <span class="line-v"></span>
+                <span class="line-v"></span>
+            </div>
+            <div class="container hero-grid-new">
+                
+                <div class="hero-content fade-in-up">
+                    <span class="editorial-tag">Digital Fashion Revolution</span>
+                    <h1 class="hero-title font-thai-bold">
+                        สร้างภาพแฟชั่นเป็นร้อย<br>
+                        ด้วยงบไม่ถึง 200 บาท
+                    </h1>
+                    
+                    <div class="hero-subheadline-list">
+                        <p class="hero-sub-item">✦ ไม่ต้องจ้างทีมงาน</p>
+                        <p class="hero-sub-item">✦ ไม่ต้องออกกล้องเอง</p>
+                        
+                        <!-- Inline collage for mobile view only -->
+                        <div class="hero-collage-wrapper inline-mobile-collage fade-in-up delay-200">
+                            <div class="collage-grid">
+                                <div class="collage-item">
+                                    <img src="assets/lifestyle_cafe.png" alt="Café Lifestyle Style">
+                                    <span class="collage-label">Café Lifestyle</span>
+                                </div>
+                                <div class="collage-item">
+                                    <img src="assets/gallery_one.png" alt="Street Fashion Style">
+                                    <span class="collage-label">Street Fashion</span>
+                                </div>
+                                <div class="collage-item">
+                                    <img src="assets/hero_fashion.png" alt="Studio Editorial Style">
+                                    <span class="collage-label">Studio Editorial</span>
+                                </div>
+                                <div class="collage-item">
+                                    <img src="assets/gallery_two.png" alt="Office Fashion Style">
+                                    <span class="collage-label">Office Fashion</span>
+                                </div>
+                                <div class="collage-item">
+                                    <img src="assets/garden_lifestyle.png" alt="Garden Lifestyle Style">
+                                    <span class="collage-label">Garden Lifestyle</span>
+                                </div>
+                                <div class="collage-item">
+                                    <img src="assets/product_mockup.png" alt="Flat Lay Product Photography Style">
+                                    <span class="collage-label">Flat Lay Product</span>
+                                </div>
+                            </div>
+                            <div class="collage-caption">
+                                <span>Editorial Collage</span>
+                                <span>06 Showcase Styles</span>
+                            </div>
+                        </div>
+
+                        <p class="hero-sub-item highlight-sub">เรียนรู้ได้ภายใน 1 ชั่วโมง</p>
+                    </div>
+
+                    <!-- Mini Benefits -->
+                    <div class="mini-benefits">
+                        <div class="benefit-tag">✓ เหมาะสำหรับเจ้าของแบรนด์แฟชั่น</div>
+                        <div class="benefit-tag">✓ มือใหม่ก็เริ่มได้</div>
+                        <div class="benefit-tag">✓ ไม่ต้องมีพื้นฐาน AI</div>
+                        <div class="benefit-tag">✓ ไม่ต้องเก่งภาษาอังกฤษ</div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#products" class="btn btn-primary"><span>เริ่มต้นเพียง 49 บาท</span></a>
+                        <a href="#products" class="btn btn-secondary"><span>ดูรายละเอียดแพ็กเกจ</span></a>
+                    </div>
+                </div>
+
+                <!-- Collage Grid of 6 Styles -->
+                <div class="hero-collage-wrapper fade-in-up delay-200">
+                    <div class="collage-grid">
+                        <div class="collage-item">
+                            <img src="assets/lifestyle_cafe.png" alt="Café Lifestyle Style">
+                            <span class="collage-label">Café Lifestyle</span>
+                        </div>
+                        <div class="collage-item">
+                            <img src="assets/gallery_one.png" alt="Street Fashion Style">
+                            <span class="collage-label">Street Fashion</span>
+                        </div>
+                        <div class="collage-item">
+                            <img src="assets/hero_fashion.png" alt="Studio Editorial Style">
+                            <span class="collage-label">Studio Editorial</span>
+                        </div>
+                        <div class="collage-item">
+                            <img src="assets/gallery_two.png" alt="Office Fashion Style">
+                            <span class="collage-label">Office Fashion</span>
+                        </div>
+                        <div class="collage-item">
+                            <img src="assets/garden_lifestyle.png" alt="Garden Lifestyle Style">
+                            <span class="collage-label">Garden Lifestyle</span>
+                        </div>
+                        <div class="collage-item">
+                            <img src="assets/product_mockup.png" alt="Flat Lay Product Photography Style">
+                            <span class="collage-label">Flat Lay Product</span>
+                        </div>
+                    </div>
+                    <div class="collage-caption">
+                        <span>Editorial Collage</span>
+                        <span>06 Showcase Styles</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Pain Point Section -->
+        <section class="pain-point-section" id="pain-point">
+            <div class="container">
+                <div class="editorial-split">
+                    <div class="split-left fade-in-up">
+                        <div class="section-label">
+                            <span class="label-number">01</span>
+                            <span class="label-text">The Challenge</span>
+                        </div>
+                        <h2 class="split-title font-thai-bold">
+                            คุณกำลังเจอปัญหา<br>
+                            เหล่านี้อยู่หรือเปล่า?
+                        </h2>
+                        
+                        <div class="closing-statement-wrapper">
+                            <p class="closing-tag">Manifesto</p>
+                            <blockquote class="editorial-quote-new">
+                                "คุณอาจมีสินค้าที่ดีอยู่แล้ว แต่ยังขาดภาพสวย ๆ สำหรับใช้โปรโมตแบรนด์อย่างต่อเนื่อง"
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <div class="split-right fade-in-up delay-200">
+                        <div class="checklist-grid">
+                            <div class="checklist-card">
+                                <span class="checklist-icon">✕</span>
+                                <p class="checklist-text">จ้างคนอื่นถ่ายภาพสินค้าให้ ทำให้ต้นทุนสูงขึ้น</p>
+                            </div>
+                            <div class="checklist-card">
+                                <span class="checklist-icon">✕</span>
+                                <p class="checklist-text">จ้างคนอื่นถ่ายภาพสินค้า แต่งานไม่ตรงใจ</p>
+                            </div>
+                            <div class="checklist-card">
+                                <span class="checklist-icon">✕</span>
+                                <p class="checklist-text">เบื่อกับการถ่ายภาพสินค้าเอง ออกกล้องเอง</p>
+                            </div>
+                            <div class="checklist-card">
+                                <span class="checklist-icon">✕</span>
+                                <p class="checklist-text">อยากเริ่มแบรนด์แฟชั่น แต่งบน้อย</p>
+                            </div>
+                            <div class="checklist-card">
+                                <span class="checklist-icon">✕</span>
+                                <p class="checklist-text">อยากสร้างคอนเทนต์ได้ เร็วขึ้น</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section (Before & After Comparison) -->
+        <section class="solution-section" id="solution">
+            <div class="container">
+                <div class="section-header-centered fade-in-up">
+                    <div class="section-label align-center">
+                        <span class="label-number">02</span>
+                        <span class="label-text">The AI Solution</span>
+                    </div>
+                    <h2 class="section-title text-center">
+                        เปลี่ยนรูปสินค้าเพียงไม่กี่รูป<br>
+                        <span class="serif-italic">ให้กลายเป็นคอนเทนต์ได้เป็นร้อยภาพ</span>
+                    </h2>
+                </div>
+
+                <div class="comparison-container fade-in-up delay-100">
+                    <!-- Before Card -->
+                    <div class="comparison-side before-side">
+                        <span class="side-tag">Before</span>
+                        <div class="product-placeholder-box no-border">
+                            <img src="assets/Before.PNG" alt="รูปสินค้าธรรมดา Before" class="comparison-before-img">
+                        </div>
+                    </div>
+
+                    <!-- After Card (Interactive Tabbed Showcase) -->
+                    <div class="comparison-side after-side">
+                        <span class="side-tag">After (AI Generated)</span>
+                        <div class="after-image-display">
+                            <img src="assets/lifestyle_cafe.png" alt="Café Lifestyle" class="after-img" id="after-img-cafe">
+                            <img src="assets/gallery_one.png" alt="Street Fashion" class="after-img active" id="after-img-street">
+                            <img src="assets/hero_fashion.png" alt="Studio Editorial" class="after-img" id="after-img-studio">
+                            <img src="assets/gallery_two.png" alt="Office Fashion" class="after-img" id="after-img-office">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="after-controls">
+                            <button class="after-control-btn" data-style="cafe">Café Lifestyle</button>
+                            <button class="after-control-btn active" data-style="street">Street Fashion</button>
+                            <button class="after-control-btn" data-style="studio">Studio Editorial</button>
+                            <button class="after-control-btn" data-style="office">Office Fashion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-text-block fade-in-up text-center">
+                    <p class="editorial-paragraph highlight">
+                        สร้างภาพสำหรับโพสต์โซเชียลมีเดีย เว็บไซต์ และโฆษณา ได้ด้วยตัวเองภายในไม่กี่นาที
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Is This For Section -->
+        <section class="target-section" id="who-is-this-for">
+            <div class="container">
+                <div class="section-header-centered fade-in-up">
+                    <div class="section-label align-center">
+                        <span class="label-number">03</span>
+                        <span class="label-text">Audience</span>
+                    </div>
+                    <h2 class="section-title text-center">เหมาะกับใคร?</h2>
+                </div>
+                
+                <div class="who-is-for-grid">
+                    <div class="who-card fade-in-up">
+                        <span class="who-check">✓</span>
+                        <h3 class="who-title">เจ้าของแบรนด์แฟชั่น ที่อยากลดค่าใช้จ่าย</h3>
+                    </div>
+                    <div class="who-card fade-in-up delay-50">
+                        <span class="who-check">✓</span>
+                        <h3 class="who-title">คนที่อยากมีคอนเทนต์มากขึ้น ด้วยเวลาเร็วขึ้น และงบที่น้อยลง</h3>
+                    </div>
+                    <div class="who-card fade-in-up delay-100">
+                        <span class="who-check">✓</span>
+                        <h3 class="who-title">คนที่เริ่มต้นสร้างแบรนด์</h3>
+                    </div>
+                    <div class="who-card fade-in-up delay-150">
+                        <span class="who-check">✓</span>
+                        <h3 class="who-title">คนที่อยากควบคุมคุณภาพคอนเทนต์เอง</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Offer Section -->
+        <section class="product-section" id="products">
+            <div class="container">
+                <div class="section-header-centered fade-in-up">
+                    <div class="section-label align-center">
+                        <span class="label-number">04</span>
+                        <span class="label-text">Pricing Packages</span>
+                    </div>
+                    <h2 class="section-title text-center">เลือกแพ็กเกจที่เหมาะกับคุณ</h2>
+                </div>
+
+                <div class="product-grid-new">
+                    <!-- CARD 1: AI Prompts Starter Kit -->
+                    <div class="product-card-new fade-in-up">
+                        <div class="card-header-new">
+                            <span class="product-badge-new">สำหรับมือใหม่</span>
+                            <div class="product-ebook-img-box">
+                                <img src="assets/5ebook.PNG" alt="AI Prompts Starter Kit E-book" class="product-ebook-img">
+                            </div>
+                            <h3 class="product-title-new">AI Prompts Starter Kit</h3>
+                            <p class="product-desc-new">เรียนรู้พื้นฐานและเริ่มทำภาพแฟชั่นลุคแรกสำเร็จด้วยตัวเอง</p>
+                        </div>
+                        <div class="price-section-new">
+                            <span class="price-curr">฿49</span>
+                            <span class="price-orig">฿299</span>
+                            <span class="price-limited-tag">Limited time</span>
+                        </div>
+                        <div class="card-body-new">
+                            <ul class="features-list-new">
+                                <li>✓ Mini Guide เริ่มต้นใช้งาน AI</li>
+                                <li>✓ วิธีสร้างภาพแฟชั่นแบบ Step-by-Step</li>
+                                <li>✓ วิธีเขียน Prompt สำหรับมือใหม่</li>
+                                <li>✓ วิธีทำให้ภาพดูเหมือนภาพถ่ายจริง</li>
+                                <li>✓ เรียนรู้และเริ่มใช้งานได้ภายใน 1 ชั่วโมง</li>
+                                <li>✓ Prompt พร้อมใช้ 5 แบบ</li>
+                                <li>✓ สามารถนำไปต่อยอดและปรับใช้กับแบรนด์ของคุณได้</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer-new">
+                            <a href="#cta" class="btn btn-buy-new btn-primary" data-product="AI Prompts Starter Kit" data-price="49">
+                                <span>รับ Starter Kit</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: 40 Fabulous Prompts Pack -->
+                    <div class="product-card-new featured fade-in-up delay-100">
+                        <div class="card-header-new">
+                            <span class="product-badge-new highlight-badge">🔥 Best Seller</span>
+                            <div class="product-ebook-img-box">
+                                <img src="assets/40ebook.PNG" alt="40 Fabulous Prompts Pack E-book" class="product-ebook-img">
+                            </div>
+                            <h3 class="product-title-new">40 Fabulous Prompts Pack</h3>
+                            <p class="product-desc-new">ยกระดับแบรนด์ให้มีสไตล์ที่หลากหลายด้วยคำสั่งพร้อมใช้งานครบวงจร</p>
+                        </div>
+                        <div class="price-section-new">
+                            <span class="price-curr">฿299</span>
+                            <span class="price-orig">฿1,499</span>
+                            <span class="price-limited-tag">Limited time</span>
+                        </div>
+                        <div class="card-body-new">
+                            <ul class="features-list-new">
+                                <li>✓ Prompt พร้อมใช้ 40 แบบ</li>
+                                <li>✓ Café Lifestyle Collection</li>
+                                <li>✓ Street Fashion Collection</li>
+                                <li>✓ Studio Editorial Collection</li>
+                                <li>✓ Office Collection</li>
+                                <li>✓ Flat Lay Collection</li>
+                                <li>✓ Copy & Paste ได้ทันที</li>
+                                <li>✓ Mini Guide วิธีใช้งาน</li>
+                                <li>✓ วิธีปรับ Prompt ให้เข้ากับแบรนด์</li>
+                                <li>✓ เทคนิคสร้างภาพสมจริง ไม่ดูเป็น AI</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer-new">
+                            <a href="#cta" class="btn btn-buy-new btn-primary" data-product="40 Fabulous Prompts Pack" data-price="299">
+                                <span>รับ 40 Prompts Pack</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Example Gallery Section -->
+        <section class="gallery-section" id="gallery">
+            <div class="container">
+                <div class="section-header-centered fade-in-up">
+                    <div class="section-label align-center">
+                        <span class="label-number">05</span>
+                        <span class="label-text">Visual Showcase</span>
+                    </div>
+                    <h2 class="section-title text-center">ตัวอย่างภาพที่คุณสามารถสร้างได้</h2>
+                </div>
+
+                <div class="magazine-grid-new fade-in-up delay-100">
+                    <div class="grid-item-new">
+                        <div class="item-img-box">
+                            <img src="assets/lifestyle_cafe.png" alt="Café Lifestyle style">
+                            <div class="item-overlay-new"></div>
+                        </div>
+                        <h4 class="item-tag-new">Café Lifestyle</h4>
+                    </div>
+                    <div class="grid-item-new">
+                        <div class="item-img-box">
+                            <img src="assets/hero_fashion.png" alt="Studio Editorial style">
+                            <div class="item-overlay-new"></div>
+                        </div>
+                        <h4 class="item-tag-new">Studio Editorial</h4>
+                    </div>
+                    <div class="grid-item-new">
+                        <div class="item-img-box">
+                            <img src="assets/gallery_two.png" alt="Office Fashion style">
+                            <div class="item-overlay-new"></div>
+                        </div>
+                        <h4 class="item-tag-new">Office Fashion</h4>
+                    </div>
+                    <div class="grid-item-new">
+                        <div class="item-img-box">
+                            <img src="assets/gallery_one.png" alt="Street Fashion style">
+                            <div class="item-overlay-new"></div>
+                        </div>
+                        <h4 class="item-tag-new">Street Fashion</h4>
+                    </div>
+                    <div class="grid-item-new">
+                        <div class="item-img-box">
+                            <img src="assets/product_mockup.png" alt="Flat Lay Product Shot style">
+                            <div class="item-overlay-new"></div>
+                        </div>
+                        <h4 class="item-tag-new">Flat Lay Product Shot</h4>
+                    </div>
+                    <div class="grid-item-new">
+                        <div class="item-img-box">
+                            <img src="assets/garden_lifestyle.png" alt="Garden Lifestyle style">
+                            <div class="item-overlay-new"></div>
+                        </div>
+                        <h4 class="item-tag-new">Garden Lifestyle</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-statement text-center fade-in-up">
+                    <p class="editorial-paragraph italic-caption text-center">
+                        * ภาพทั้งหมดสามารถสร้างได้ด้วย AI โดยไม่ต้องจ้างช่างภาพ ไม่ต้องเช่าสตูดิโอ และไม่ต้องออกกล้องเอง
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Us Section -->
+        <section class="why-us-section" id="why-us">
+            <div class="container">
+                <div class="why-us-split">
+                    <div class="why-left fade-in-up">
+                        <div class="section-label">
+                            <span class="label-number">06</span>
+                            <span class="label-text">The Quality Gap</span>
+                        </div>
+                        <h2 class="section-title">ทำไม Prompts<br>ของเราถึงแตกต่าง?</h2>
+
+                    </div>
+                    <div class="why-right fade-in-up delay-200">
+                        <div class="why-benefits-list">
+                            <div class="why-benefit-item">
+                                <span class="b-check">✓</span>
+                                <div class="b-details">
+                                    <h3 class="b-title">ออกแบบมาสำหรับแบรนด์แฟชั่นโดยเฉพาะ</h3>
+                                </div>
+                            </div>
+                            <div class="why-benefit-item">
+                                <span class="b-check">✓</span>
+                                <div class="b-details">
+                                    <h3 class="b-title">เน้นภาพสมจริง ไม่ดูเป็น AI</h3>
+                                </div>
+                            </div>
+                            <div class="why-benefit-item">
+                                <span class="b-check">✓</span>
+                                <div class="b-details">
+                                    <h3 class="b-title">ใช้งานได้ทันที</h3>
+                                </div>
+                            </div>
+                            <div class="why-benefit-item">
+                                <span class="b-check">✓</span>
+                                <div class="b-details">
+                                    <h3 class="b-title">ไม่ต้องเก่งภาษาอังกฤษ</h3>
+                                </div>
+                            </div>
+                            <div class="why-benefit-item">
+                                <span class="b-check">✓</span>
+                                <div class="b-details">
+                                    <h3 class="b-title">เหมาะสำหรับมือใหม่</h3>
+                                </div>
+                            </div>
+                            <div class="why-benefit-item">
+                                <span class="b-check">✓</span>
+                                <div class="b-details">
+                                    <h3 class="b-title">ปรับใช้กับสินค้าและแบรนด์ได้หลากหลาย</h3>
+                                </div>
+                            </div>
+                            <div class="why-benefit-item">
+                                <span class="b-check">✓</span>
+                                <div class="b-details">
+                                    <h3 class="b-title">ช่วยประหยัดเวลาและค่าใช้จ่ายในการสร้างคอนเทนต์</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="faq-split">
+                    <div class="faq-left fade-in-up">
+                        <div class="section-label">
+                            <span class="label-number">07</span>
+                            <span class="label-text">FAQ</span>
+                        </div>
+                        <h2 class="section-title font-thai-bold">คำถามที่พบบ่อย</h2>
+                        <p class="editorial-paragraph text-muted">
+                            ตอบข้อสงสัยเบื้องต้น เพื่อให้คุณเริ่มต้นใช้งานได้อย่างสบายใจและไม่มีขีดจำกัด
+                        </p>
+                    </div>
+                    <div class="faq-right fade-in-up delay-200">
+                        <div class="accordion-container">
+                            
+                            <!-- FAQ 1 -->
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false">
+                                    <span class="trigger-text">AI ที่ใช้จำเป็นต้องจ่าย Subscription เพิ่มหรือไม่?</span>
+                                    <span class="trigger-icon"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        <p class="editorial-paragraph">
+                                            สามารถใช้แพ็กเกจฟรีได้ แต่หากต้องการสร้างภาพจำนวนมาก สามารถสมัครแพ็กเกจเริ่มต้นไม่ถึง 200 บาทต่อเดือน และสร้างภาพได้หลักร้อยภาพ
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 2 -->
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false">
+                                    <span class="trigger-text">มือใหม่ไม่มีพื้นฐานเลย ใช้ได้ไหม?</span>
+                                    <span class="trigger-icon"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        <p class="editorial-paragraph">
+                                            ได้แน่นอน ทั้ง Starter Kit และ 40 Fabulous Prompts Pack มี Mini Guide สอนการใช้งานแบบ Step-by-Step เพียง Copy & Paste ก็สามารถเริ่มสร้างภาพได้ทันที
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 3 -->
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false">
+                                    <span class="trigger-text">ต้องเก่งภาษาอังกฤษไหม?</span>
+                                    <span class="trigger-icon"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        <p class="editorial-paragraph">
+                                            ไม่จำเป็น Prompt ของเรามีทั้งภาษาไทยและภาษาอังกฤษ เพื่อให้คุณสามารถอ่าน เข้าใจ และปรับแต่งให้เข้ากับแบรนด์ของคุณได้ง่ายขึ้น อย่างไรก็ตามจำเป็นต้องมีภาษาอังกฤษบางส่วนเพื่อให้ AI เข้าใจคำสั่งได้ครบถ้วนและให้ผลลัพธ์ที่ดีที่สุด
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 4 -->
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false">
+                                    <span class="trigger-text">ภาพที่ได้สามารถใช้เชิงพาณิชย์ได้หรือไม่?</span>
+                                    <span class="trigger-icon"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        <p class="editorial-paragraph">
+                                            สามารถนำไปใช้บนเว็บไซต์ โซเชียลมีเดีย หรือโฆษณาของแบรนด์ได้ โดยไม่มีค่าลิขสิทธิ์เพิ่มเติม ทั้งนี้ขึ้นอยู่กับเงื่อนไขของแพลตฟอร์ม AI ที่เลือกใช้งาน
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 5 -->
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false">
+                                    <span class="trigger-text">หากมีคำถามเพิ่มเติมต้องทำอย่างไร?</span>
+                                    <span class="trigger-icon"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        <p class="editorial-paragraph">
+                                            สามารถ Inbox หรือส่งอีเมลมาสอบถามทีมงานได้ตลอด เรายินดีช่วยเหลือและแนะนำการใช้งานเบื้องต้น
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="cta-section-new" id="cta">
+            <div class="container text-center">
+                <div class="section-label align-center fade-in-up">
+                    <span class="label-number">08</span>
+                    <span class="label-text">The New Runway</span>
+                </div>
+                
+                <h2 class="cta-title fade-in-up delay-100">
+                    พร้อมสร้างภาพแฟชั่นสวย ๆ<br>
+                    <span class="serif-italic">โดยไม่ต้องจ้างทีมถ่ายภาพหรือยัง?</span>
+                </h2>
+                
+                <p class="cta-price-tag fade-in-up delay-150">เริ่มต้นเพียง 49 บาท</p>
+                
+                <div class="checkout-notification-toast" id="toast">
+                    <span class="toast-message"></span>
+                </div>
+
+                <div class="final-cta-buttons fade-in-up delay-200">
+                    <button class="btn btn-primary btn-cta-checkout" data-product="AI Prompts Starter Kit" data-price="49">
+                        <span>ซื้อ Starter Kit - 49 บาท</span>
+                    </button>
+                    <button class="btn btn-secondary btn-cta-checkout" data-product="40 Fabulous Prompts Pack" data-price="299">
+                        <span>ซื้อ 40 Prompts Pack - 299 บาท</span>
+                    </button>
+                </div>
+
+                <p class="cta-trust-text fade-in-up delay-300">
+                    เริ่มสร้างภาพแฟชั่นสำหรับแบรนด์ของคุณได้ตั้งแต่วันนี้ ประหยัดทั้งเวลาและต้นทุนในการทำคอนเทนต์
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3 class="footer-logo">PROMPT FASHION LAB</h3>
+                <p class="footer-manifesto">
+                    นวัตกรรมเพื่อแบรนด์แฟชั่นสมัยใหม่ พลิกโฉมการจัดคอนเทนต์ภาพจำลองเสื้อผ้าด้วยเทคโนโลยีปัญญาประดิษฐ์ระดับกูตูร์
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <h4 class="footer-title">หัวข้อ</h4>
+                <ul>
+                    <li><a href="#pain-point">ปัญหา</a></li>
+                    <li><a href="#solution">ทางออก</a></li>
+                    <li><a href="#who-is-this-for">เหมาะกับใคร</a></li>
+                    <li><a href="#products">แพ็กเกจ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4 class="footer-title">ช่วยเหลือ</h4>
+                <ul>
+                    <li><a href="#faq">คำถามพบบ่อย</a></li>
+                    <li><a href="#products">สั่งซื้อแพ็กเกจ</a></li>
+                    <li><a href="#">เงื่อนไขการใช้งานสิทธิ์</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-socials">
+                <h4 class="footer-title">ข้อมูลติดต่อ</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/promptfashionlab/" target="_blank" aria-label="Instagram">IG</a>
+                    <a href="https://www.facebook.com/profile.php?id=61590147222197" target="_blank" aria-label="Facebook">FB</a>
+                </div>
+                <p class="footer-contact">promptfashionlab@gmail.com</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p class="copyright">&copy; 2026 Prompt Fashion Lab. All rights reserved. Loopless Thai Typography.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script src="app.js"></script>
+</body>
+</html>
