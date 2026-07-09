@@ -197,10 +197,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const productName = btn.getAttribute('data-product') || 'แพ็กเกจพรอมต์';
-            const price = btn.getAttribute('data-price') || '49';
+            const price = btn.getAttribute('data-price') || '59';
             const orderId = `PFL-${Math.floor(100000 + Math.random() * 900000)}`;
             
-            showToast(`🛒 <strong>จองสิทธิ์สำเร็จ:</strong> ${productName} (ราคาพิเศษ ${price} บาท)<br>รหัสยืนยันคำสั่งซื้อจำลองของคุณคือ <strong>${orderId}</strong>`);
+            showToast(`🛒 <strong>จองสิทธิ์สำเร็จ:</strong> ${productName} (ราคาพิเศษ ${price} บาท)<br>รหัสยืนยันคำสั่งรับจำลองของคุณคือ <strong>${orderId}</strong>`);
         });
     });
 });
