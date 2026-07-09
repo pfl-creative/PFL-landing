@@ -177,30 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 7. Toast & Simulated Checkout Notifier ---
+    // --- 7. Toast & Simulated Checkout Notifier (Unused now that we use direct Stripe links) ---
     const toast = document.getElementById('toast');
     const toastMsg = toast ? toast.querySelector('.toast-message') : null;
-    const checkoutButtons = document.querySelectorAll('.btn-buy-new, .btn-cta-checkout');
-    
-    const showToast = (message, duration = 5000) => {
-        if (!toast || !toastMsg) return;
-        
-        toastMsg.innerHTML = message; // Using HTML to allow emoji formatting or linebreaks
-        toast.classList.add('active');
-        
-        setTimeout(() => {
-            toast.classList.remove('active');
-        }, duration);
-    };
-    
-    checkoutButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const productName = btn.getAttribute('data-product') || 'แพ็กเกจพรอมต์';
-            const price = btn.getAttribute('data-price') || '59';
-            const orderId = `PFL-${Math.floor(100000 + Math.random() * 900000)}`;
-            
-            showToast(`🛒 <strong>จองสิทธิ์สำเร็จ:</strong> ${productName} (ราคาพิเศษ ${price} บาท)<br>รหัสยืนยันคำสั่งรับจำลองของคุณคือ <strong>${orderId}</strong>`);
-        });
-    });
 });
