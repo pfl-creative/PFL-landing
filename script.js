@@ -73,99 +73,288 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- DYNAMIC CONVERSION & UPGRADE MODAL FLOW ---
-  const modal = document.getElementById('checkoutModal');
-  const modalClose = document.getElementById('modalClose');
-  const modalTitle = document.getElementById('selectedProductName');
-  const modalBasePrice = document.getElementById('modalBasePrice');
-  const modalTotalPrice = document.getElementById('modalTotalPrice');
-  const upgradeCheckbox = document.getElementById('upgradeCheckbox');
-  const modalCheckoutBtn = document.getElementById('modalCheckoutBtn');
-  const modalSkip = document.getElementById('modalSkip');
-
-  let currentProduct = {
-    id: '',
-    name: '',
-    price: 0
-  };
-
-  const upgradeOption = {
-    name: 'PFL Photoshoot Generator',
-    price: 499,
-    selected: false
-  };
-
-  // Open checkout modal for selected product
-  window.openCheckout = function(productId, productName, basePrice) {
-    currentProduct.id = productId;
-    currentProduct.name = productName;
-    currentProduct.price = parseInt(basePrice);
-    
-    // Reset upgrade state
-    upgradeOption.selected = false;
-    upgradeCheckbox.classList.remove('checked');
-    
-    // Update Modal DOM
-    modalTitle.textContent = currentProduct.name;
-    modalBasePrice.textContent = `${currentProduct.price} THB`;
-    
-    updateTotalPrice();
-    
-    // Open Modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Lock background scroll
-  };
-
-  // Update total price based on upgrade checkbox state
-  function updateTotalPrice() {
-    let total = currentProduct.price;
-    if (upgradeOption.selected) {
-      total += upgradeOption.price;
+  // --- INTERACTIVE SIMULATOR DATABASE ---
+  const simulatorDatabase = {
+    'product:blouse|model:thai|location:cafe|mood:luxury': {
+      prompt: "Analog film fashion photography of a 28yo Thai woman wearing a light blue silk blouse, sitting in a minimal warm-ivory concrete cafe, relaxed quiet luxury mood, iPhone lifestyle camera angle, shot on 35mm, f/2.8 --ar 4:5",
+      images: {
+        wide: "images/shot_01.jpg",
+        medium: "images/shot_02.jpg",
+        closeup: "images/shot_03.jpg",
+        candid: "images/shot_04.jpg",
+        detail: "images/shot_05.jpg",
+        hero: "images/shot_06.jpg"
+      }
+    },
+    'product:blouse|model:thai|location:cafe|mood:edgy': {
+      prompt: "Candid snapshots of a 28yo Thai woman wearing a neon blue cropped blouse, standing outside a vintage concrete cafe, raw camera flash photography, edgy street style, high-contrast shadows, direct flash --ar 4:5",
+      images: {
+        wide: "images/blouse_thai_cafe_edgy_shot_01.jpg",
+        medium: "images/blouse_thai_cafe_edgy_shot_02.jpg",
+        closeup: "images/blouse_thai_cafe_edgy_shot_03.jpg",
+        candid: "images/blouse_thai_cafe_edgy_shot_04.jpg",
+        detail: "images/blouse_thai_cafe_edgy_shot_05.jpg",
+        hero: "images/blouse_thai_cafe_edgy_shot_06.jpg"
+      }
+    },
+    'product:blouse|model:thai|location:studio|mood:luxury': {
+      prompt: "Commercial fashion lookbook photography of a 28yo Thai model in a sky blue linen blouse, minimalist sunlit studio with clean shadows, calm luxury editorial style, warm organic mood --ar 4:5",
+      images: {
+        wide: "images/blouse_thai_studio_shot_01.jpg",
+        medium: "images/blouse_thai_studio_shot_02.jpg",
+        closeup: "images/blouse_thai_studio_shot_03.jpg",
+        candid: "images/blouse_thai_studio_shot_04.jpg",
+        detail: "images/blouse_thai_studio_shot_05.jpg",
+        hero: "images/blouse_thai_studio_shot_06.jpg"
+      }
+    },
+    'product:blouse|model:thai|location:studio|mood:edgy': {
+      prompt: "Underground fashion editorial featuring a 28yo Thai woman in a deconstructed blue cotton blouse, dark concrete warehouse studio, flash styling, high-contrast shadows, raw energy --ar 4:5",
+      images: {
+        wide: "images/blouse_thai_studio_edgy_shot_01.jpg",
+        medium: "images/blouse_thai_studio_edgy_shot_02.jpg",
+        closeup: "images/blouse_thai_studio_edgy_shot_03.jpg",
+        candid: "images/blouse_thai_studio_edgy_shot_04.jpg",
+        detail: "images/blouse_thai_studio_edgy_shot_05.jpg",
+        hero: "images/blouse_thai_studio_edgy_shot_06.jpg"
+      }
+    },
+    'product:dress|model:thai|location:cafe|mood:luxury': {
+      prompt: "Cinematic lifestyle photography of a Thai woman wearing an elegant cream silk satin dress, relaxed sitting in a warm beige minimal cafe, quiet luxury mood, soft morning sunlight --ar 4:5",
+      images: {
+        wide: "images/dress_shot_01.jpg",
+        medium: "images/dress_shot_02.jpg",
+        closeup: "images/dress_shot_03.jpg",
+        candid: "images/dress_shot_04.jpg",
+        detail: "images/dress_shot_05.jpg",
+        hero: "images/dress_shot_06.jpg"
+      }
+    },
+    'product:dress|model:thai|location:cafe|mood:edgy': {
+      prompt: "Street editorial of a Thai woman wearing a long cream satin dress with boots, walking by a vintage cafe window, raw flash photography, high contrast, documentary style --ar 4:5",
+      images: {
+        wide: "images/dress_cafe_edgy_shot_01.jpg",
+        medium: "images/dress_cafe_edgy_shot_02.jpg",
+        closeup: "images/dress_cafe_edgy_shot_03.jpg",
+        candid: "images/dress_cafe_edgy_shot_04.jpg",
+        detail: "images/dress_cafe_edgy_shot_05.jpg",
+        hero: "images/dress_cafe_edgy_shot_06.jpg"
+      }
+    },
+    'product:dress|model:thai|location:studio|mood:luxury': {
+      prompt: "Minimalist fashion profile featuring a Thai model in a cream fluid satin slip dress, sitting on a wooden stool in a bright sunny studio, delicate shadows, high fashion lookbook --ar 4:5",
+      images: {
+        wide: "images/dress_studio_shot_01.jpg",
+        medium: "images/dress_studio_shot_02.jpg",
+        closeup: "images/dress_studio_shot_03.jpg",
+        candid: "images/dress_studio_shot_04.jpg",
+        detail: "images/dress_studio_shot_05.jpg",
+        hero: "images/dress_studio_shot_06.jpg"
+      }
+    },
+    'product:dress|model:thai|location:studio|mood:edgy': {
+      prompt: "Raw flash photoshoot in a dark industrial studio, a Thai woman in a silk cream dress and leather jacket, bold contrasts, editorial grunge aesthetic, shot on film --ar 4:5",
+      images: {
+        wide: "images/dress_studio_edgy_shot_01.jpg",
+        medium: "images/dress_studio_edgy_shot_02.jpg",
+        closeup: "images/dress_studio_edgy_shot_03.jpg",
+        candid: "images/dress_studio_edgy_shot_04.jpg",
+        detail: "images/dress_studio_edgy_shot_05.jpg",
+        hero: "images/dress_studio_edgy_shot_06.jpg"
+      }
+    },
+    'product:blouse|model:korean|location:cafe|mood:luxury': {
+      prompt: "Analog film fashion photography of a 23yo Korean model wearing a light blue silk blouse, sitting in a minimal warm-ivory concrete cafe, relaxed quiet luxury mood, iPhone lifestyle --ar 4:5",
+      images: {
+        wide: "images/blouse_korean_cafe_shot_01.jpg",
+        medium: "images/blouse_korean_cafe_shot_02.jpg",
+        closeup: "images/blouse_korean_cafe_shot_03.jpg",
+        candid: "images/blouse_korean_cafe_shot_04.jpg",
+        detail: "images/blouse_korean_cafe_shot_05.jpg",
+        hero: "images/blouse_korean_cafe_shot_06.jpg"
+      }
+    },
+    'product:blouse|model:korean|location:cafe|mood:edgy': {
+      prompt: "Street fashion of a 23yo Korean model wearing a blue blouse, neon alley cafe background, direct flash photography, candid high-speed shutter snapshot --ar 4:5",
+      images: {
+        wide: "images/blouse_korean_cafe_edgy_shot_01.jpg",
+        medium: "images/blouse_korean_cafe_edgy_shot_02.jpg",
+        closeup: "images/blouse_korean_cafe_edgy_shot_03.jpg",
+        candid: "images/blouse_korean_cafe_edgy_shot_04.jpg",
+        detail: "images/blouse_korean_cafe_edgy_shot_05.jpg",
+        hero: "images/blouse_korean_cafe_edgy_shot_06.jpg"
+      }
+    },
+    'product:blouse|model:korean|location:studio|mood:luxury': {
+      prompt: "High fashion photography of a 23yo Korean model in a sky blue blouse, sunlight clean studio, architectural concrete styling, relaxed expression --ar 4:5",
+      images: {
+        wide: "images/blouse_korean_studio_shot_01.jpg",
+        medium: "images/blouse_korean_studio_shot_02.jpg",
+        closeup: "images/blouse_korean_studio_shot_03.jpg",
+        candid: "images/blouse_korean_studio_shot_04.jpg",
+        detail: "images/blouse_korean_studio_shot_05.jpg",
+        hero: "images/blouse_korean_studio_shot_06.jpg"
+      }
+    },
+    'product:blouse|model:korean|location:studio|mood:edgy': {
+      prompt: "Grungy studio portrait of a 23yo Korean model wearing a designer blue blouse, high-contrast flash shadow, bold urban lookbook style --ar 4:5",
+      images: {
+        wide: "images/blouse_korean_studio_edgy_shot_01.jpg",
+        medium: "images/blouse_korean_studio_edgy_shot_02.jpg",
+        closeup: "images/blouse_korean_studio_edgy_shot_03.jpg",
+        candid: "images/blouse_korean_studio_edgy_shot_04.jpg",
+        detail: "images/blouse_korean_studio_edgy_shot_05.jpg",
+        hero: "images/blouse_korean_studio_edgy_shot_06.jpg"
+      }
+    },
+    'product:dress|model:korean|location:cafe|mood:luxury': {
+      prompt: "Elegant catalog photo of a 23yo Korean model wearing a cream silk satin dress, enjoying morning light inside a minimal concrete cafe, quiet luxury concept --ar 4:5",
+      images: {
+        wide: "images/dress_korean_shot_01.jpg",
+        medium: "images/dress_korean_shot_02.jpg",
+        closeup: "images/dress_korean_shot_03.jpg",
+        candid: "images/dress_korean_shot_04.jpg",
+        detail: "images/dress_korean_shot_05.jpg",
+        hero: "images/dress_korean_shot_06.jpg"
+      }
+    },
+    'product:dress|model:korean|location:cafe|mood:edgy': {
+      prompt: "Street look of a 23yo Korean model in a fluid cream dress, sitting at a cafe stool outdoors, flash shadows, raw vintage look --ar 4:5",
+      images: {
+        wide: "images/dress_korean_cafe_edgy_shot_01.jpg",
+        medium: "images/dress_korean_cafe_edgy_shot_02.jpg",
+        closeup: "images/dress_korean_cafe_edgy_shot_03.jpg",
+        candid: "images/dress_korean_cafe_edgy_shot_04.jpg",
+        detail: "images/dress_korean_cafe_edgy_shot_05.jpg",
+        hero: "images/dress_korean_cafe_edgy_shot_06.jpg"
+      }
+    },
+    'product:dress|model:korean|location:studio|mood:luxury': {
+      prompt: "Aesthetic profile of a 23yo Korean model in a cream silk dress, bright white sunlit studio with plants, editorial fashion styling --ar 4:5",
+      images: {
+        wide: "images/dress_korean_studio_shot_01.jpg",
+        medium: "images/dress_korean_studio_shot_02.jpg",
+        closeup: "images/dress_korean_studio_shot_03.jpg",
+        candid: "images/dress_korean_studio_shot_04.jpg",
+        detail: "images/dress_korean_studio_shot_05.jpg",
+        hero: "images/dress_korean_studio_shot_06.jpg"
+      }
+    },
+    'product:dress|model:korean|location:studio|mood:edgy': {
+      prompt: "Edgy flash photo session of a 23yo Korean model in a cream satin gown, dark shadow backdrop, dramatic studio lighting --ar 4:5",
+      images: {
+        wide: "images/dress_korean_studio_edgy_shot_01.jpg",
+        medium: "images/dress_korean_studio_edgy_shot_02.jpg",
+        closeup: "images/dress_korean_studio_edgy_shot_03.jpg",
+        candid: "images/dress_korean_studio_edgy_shot_04.jpg",
+        detail: "images/dress_korean_studio_edgy_shot_05.jpg",
+        hero: "images/dress_korean_studio_edgy_shot_06.jpg"
+      }
     }
-    modalTotalPrice.textContent = `${total} THB`;
+  };
+
+  // Analytics tracking helper
+  window.trackEvent = function(eventName, params = {}) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+    console.log(`[Event Tracked] ${eventName}`, params);
+  };
+
+  // Keep track of active parameters
+  const selections = {
+    product: 'dress',
+    model: 'korean',
+    location: 'studio',
+    mood: 'luxury'
+  };
+
+  let hasTrackedDemoStart = false;
+
+  // Function to handle parameter toggling
+  window.selectOption = function(category, value, element) {
+    if (selections[category] === value) return; // Ignore if clicking already active
+    
+    if (!hasTrackedDemoStart) {
+      window.trackEvent('demo_start', { category, value });
+      hasTrackedDemoStart = true;
+    }
+
+    selections[category] = value;
+
+    // Update pill states visually
+    const pills = document.querySelectorAll(`.pill-${category}`);
+    pills.forEach(pill => pill.classList.remove('active'));
+    element.classList.add('active');
+
+    // Trigger simulator loading state
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('active');
+    }
+    
+    setTimeout(() => {
+      updateSimulator();
+      if (loader) {
+        loader.classList.remove('active');
+      }
+      window.trackEvent('demo_complete', {
+        product: selections.product,
+        model: selections.model,
+        location: selections.location,
+        mood: selections.mood
+      });
+    }, 350);
+  };
+
+  // Function to update prompt text and image assets
+  function updateSimulator() {
+    const key = `product:${selections.product}|model:${selections.model}|location:${selections.location}|mood:${selections.mood}`;
+    const data = simulatorDatabase[key];
+
+    if (data) {
+      const promptBox = document.getElementById('prompt-output-box');
+      if (promptBox) {
+        promptBox.innerText = data.prompt;
+      }
+      
+      const imgElements = {
+        wide: document.getElementById('img-wide'),
+        medium: document.getElementById('img-medium'),
+        closeup: document.getElementById('img-closeup'),
+        candid: document.getElementById('img-candid'),
+        detail: document.getElementById('img-detail'),
+        hero: document.getElementById('img-hero')
+      };
+
+      if (imgElements.wide) imgElements.wide.src = data.images.wide;
+      if (imgElements.medium) imgElements.medium.src = data.images.medium;
+      if (imgElements.closeup) imgElements.closeup.src = data.images.closeup;
+      if (imgElements.candid) imgElements.candid.src = data.images.candid;
+      if (imgElements.detail) imgElements.detail.src = data.images.detail;
+      if (imgElements.hero) imgElements.hero.src = data.images.hero;
+    }
   }
 
-  // Handle upgrade checkbox toggle
-  upgradeCheckbox.addEventListener('click', () => {
-    upgradeOption.selected = !upgradeOption.selected;
-    if (upgradeOption.selected) {
-      upgradeCheckbox.classList.add('checked');
-    } else {
-      upgradeCheckbox.classList.remove('checked');
+  // Smooth scroll to simulator from Hero CTA
+  window.scrollToDemo = function(event) {
+    if (event) event.preventDefault();
+    window.trackEvent('hero_demo_click');
+    const simSection = document.getElementById('simulator');
+    if (simSection) {
+      simSection.scrollIntoView({ behavior: 'smooth' });
     }
-    updateTotalPrice();
-  });
+  };
 
-  // Close modal functions
-  function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = ''; // Unlock scroll
-  }
-
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  // Handle Checkout actions (Mock payment screen)
-  modalCheckoutBtn.addEventListener('click', () => {
-    let message = `🎉 ขอบคุณที่เลือกซื้อสินค้า!\n\nรายการของคุณ:\n- ${currentProduct.name} (${currentProduct.price} THB)`;
-    if (upgradeOption.selected) {
-      message += `\n- + ${upgradeOption.name} Upgrade (${upgradeOption.price} THB)`;
+  // Checkout redirect logic with source tracking
+  window.checkout = function(source = 'general') {
+    if (source === 'demo') {
+      window.trackEvent('demo_buy_click');
+    } else if (source === 'proof') {
+      window.trackEvent('proof_buy_click');
     }
-    const finalPrice = currentProduct.price + (upgradeOption.selected ? upgradeOption.price : 0);
-    message += `\n\nยอดรวมทั้งสิ้น: ${finalPrice} THB\n\n(กำลังพาคุณไปยังหน้าระบบชำระเงินจำลอง...)`;
-    
-    alert(message);
-    closeModal();
-  });
-
-  modalSkip.addEventListener('click', () => {
-    upgradeOption.selected = false;
-    upgradeCheckbox.classList.remove('checked');
-    updateTotalPrice();
-    
-    alert(`🎉 ขอบคุณที่เลือกซื้อสินค้า!\n\nรายการของคุณ:\n- ${currentProduct.name} (${currentProduct.price} THB)\n\nยอดรวมทั้งสิ้น: ${currentProduct.price} THB\n\n(กำลังพาคุณไปยังหน้าระบบชำระเงินจำลอง...)`);
-    closeModal();
-  });
+    window.trackEvent('checkout_start', { source });
+    // Lead directly to Stripe checkout
+    window.location.href = 'https://buy.stripe.com/7sYbJ10VP1DbcYV2BhcIE03';
+  };
 });
